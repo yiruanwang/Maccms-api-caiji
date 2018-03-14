@@ -16,6 +16,7 @@
     "cssesc": "^1.0.0",
     "debug": "^3.1.0",
     "del": "^3.0.0",
+    "element-ui": "^2.2.1",
     "fastparse": "^1.1.1",
     "http-proxy-middleware": "^0.17.4",
     "killable": "^1.0.0",

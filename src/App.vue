@@ -9,6 +9,7 @@
             <router-link to="/zepto">zepto</router-link>
             <router-link to="/video">video</router-link>   
             <router-link to="/cjindex">采集</router-link> -->
+    <el-button type="primary">主要按钮</el-button>
     <keep-alive>
       <router-view v-wechat-title="$route.meta.title"></router-view>
     </keep-alive>

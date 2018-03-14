@@ -11,7 +11,10 @@ import 'vue-ydui/dist/ydui.rem.css';
 // import 'vue-ydui/dist/ydui.px.css';
 // import zjs from '@/components/javascript/zjs'
 import zjs from 'yzjs'
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 
+Vue.use(ElementUI);
 Vue.use(YDUI);
 Vue.use(VueWechatTitle)
 Vue.config.productionTip = false
