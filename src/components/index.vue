@@ -1,7 +1,6 @@
 <!-- 雅致便利采集插件首页 -->
 <template>
   <div id="index">
-    <!-- <img src="../assets/logo.png"> -->
     <img src="../assets/img/yzLogo2.png" alt="易软雅致">
   </div>
 
