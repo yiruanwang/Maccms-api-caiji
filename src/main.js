@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import VueLazyload from 'vue-lazyload'
 import axios from 'axios'
+import VueResource from 'vue-resource'
 import VueWechatTitle from 'vue-wechat-title'
 import YDUI from 'vue-ydui'; /* 相当于import YDUI from 'vue-ydui/ydui.rem.js' */
 import 'vue-ydui/dist/ydui.rem.css';
@@ -14,7 +15,7 @@ import zjs from 'yzjs'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import Nav from './components/Nav/Nav.vue'
-
+Vue.use(VueResource);
 Vue.use(ElementUI);
 Vue.use(YDUI);
 Vue.use(VueWechatTitle)

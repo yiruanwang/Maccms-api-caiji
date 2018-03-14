@@ -57,10 +57,10 @@ export default {
   },
   methods: {
     handleOpen(key, keyPath) {
-      console.log(key, keyPath);
+      // console.log(key, keyPath);
     },
     handleClose(key, keyPath) {
-      console.log(key, keyPath);
+      // console.log(key, keyPath);
     },
     handleIconClick(ev) {
       console.log(ev);
@@ -120,12 +120,13 @@ export default {
   }
 }
 .Nav-top {
-  position: absolute;
+  position: fixed;
   width: 100%;
   background-color: #545c64;
   overflow: hidden;
   height: 50px;
   line-height: 50px;
+  z-index: 99999;
   .logo {
     float: left;
     color: white;

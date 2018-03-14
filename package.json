@@ -10,6 +10,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@types/vue-resource": "^0.9.34",
     "acorn-dynamic-import": "^3.0.0",
     "axios": "^0.17.1",
     "compression": "^1.7.1",
@@ -26,6 +27,7 @@
     "p-try": "^1.0.0",
     "serve-index": "^1.9.1",
     "vue": "^2.5.2",
+    "vue-resource": "^1.5.0",
     "vue-router": "^3.0.1",
     "vue-wechat-title": "^2.0.4",
     "vue-ydui": "^1.2.0",
