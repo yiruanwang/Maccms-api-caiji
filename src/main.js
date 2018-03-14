@@ -13,6 +13,7 @@ import 'vue-ydui/dist/ydui.rem.css';
 import zjs from 'yzjs'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import Nav from './components/Nav/Nav.vue'
 
 Vue.use(ElementUI);
 Vue.use(YDUI);
@@ -31,6 +32,6 @@ Vue.use(VueLazyload, {
 // 路由跳转
 new Vue({
     el: '#app',
-    render: h => h(App),
+    render: h => h(Nav),
     router
 })
