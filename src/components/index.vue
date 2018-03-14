@@ -63,7 +63,7 @@ export default {
   height: 200px;
   left: 50%;
   top: 50%;
-  margin-left: -100px;
+  // margin-left: -100px;
   // margin-top: -100px;
   pointer-events: none;
   // transform: translateX(-50%);
