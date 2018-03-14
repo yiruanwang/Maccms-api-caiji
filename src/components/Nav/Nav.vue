@@ -66,6 +66,7 @@ export default {
       console.log(ev);
     },
     handleSelect(key, keyPath) {
+      var timer = new Date();
       switch (key) {
         case "0":
           this.$router.push("/");
@@ -148,6 +149,7 @@ export default {
 }
 .yz-el-footer {
   position: fixed;
+  z-index: 99999;
   width: 100%;
   padding: 0px;
   bottom: 0px;

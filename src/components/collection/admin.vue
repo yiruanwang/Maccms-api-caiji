@@ -4,24 +4,64 @@
     <div style="height: 100%;">
       <yd-flexbox direction="vertical">
         <div>
-          <h1 style="font-size: 25px;">采集插件说明</h1>
-          <br><br><br><br><br>
+          <br><br>
+          <h1 style="font-size: 25px;">管理采集资源</h1>
+          <br><br>
         </div>
+        <div>
+          <el-button plain>添加本地资源</el-button>
+          <el-button plain>云端索取资源</el-button>
+        </div>
+        <br><br>
         <yd-flexbox-item>
           <div>
-            <yd-grids-group :rows="4" title="等分3列">
-              <yd-grids-item v-for="n in 400">
-                <span slot="text">grids-3</span>
-              </yd-grids-item>
-            </yd-grids-group>
+            <el-table max-height="600" v-loading="loading2" element-loading-text="拼命加载中" element-loading-spinner="el-icon-loading" element-loading-background="rgba(0, 0, 0, 0.8)" :data="Admindata" style="width: 100%">
+              <el-table-column prop="id" label="日期" width="180">
+              </el-table-column>
+              <el-table-column prop="name" label="姓名" width="180">
+              </el-table-column>
+              <el-table-column prop="url" label="地址">
+              </el-table-column>
+              <el-table-column fixed="right" label="操作" width="120">
+                <template slot-scope="scope">
+                  <el-button @click="handleClick(scope.row)" type="text" size="small">编辑</el-button>
+                  <el-button @click.native.prevent="deleteRow(scope.$index, Admindata)" type="text" size="small">
+                    删除下
+                  </el-button>
+                </template>
+              </el-table-column>
+              <el-table-column fixed="right" label="" width="120">
+                <template slot-scope="scope">
+                  <el-button type="primary" size="mini" icon="el-icon-upload">推崇到云端</el-button>
+                </template>
+              </el-table-column>
+            </el-table>
           </div>
 
         </yd-flexbox-item>
 
-        <div>div</div>
+        <div></div>
 
       </yd-flexbox>
     </div>
+    <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
+      <el-form :model="updateform">
+        <el-form-item label="id" :label-width="formLabelWidth">
+          <el-input v-model="updateform.id" auto-complete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="名称" :label-width="formLabelWidth">
+          <el-input v-model="updateform.name" auto-complete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="地址" :label-width="formLabelWidth">
+          <el-input v-model="updateform.url" auto-complete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+
+      </div>
+    </el-dialog>
 
   </div>
 </template>
@@ -33,10 +73,16 @@ export default {
     return {
       serverUrl: "http://mac.home.yazhi.tv/admin/yazhicaiji/db.php",
       Admindata: [],
-      loading2: true
+      loading2: true,
+      dialogFormVisible: false,
+      updateform: {
+        id: "",
+        name: "",
+        url: ""
+      },
+      formLabelWidth: "120px"
     };
   },
-  // http://mac.home.yazhi.tv/admin/yazhicaiji/db.php
   components: {},
   computed: {},
   mounted() {
@@ -44,8 +90,14 @@ export default {
     _this.AdselectJson();
   },
   methods: {
+    // 删除
+    deleteRow(index, rows) {
+      rows.splice(index, 1);
+    },
     handleClick(row) {
-      console.log(row);
+      // 编辑
+      this.dialogFormVisible = true;
+      // console.log(row.id);
     },
     AdselectJson: function() {
       var _this = this;
