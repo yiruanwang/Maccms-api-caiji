@@ -20,8 +20,6 @@
     "http-proxy-middleware": "^0.17.4",
     "killable": "^1.0.0",
     "mescroll.js": "^1.3.2",
-    "mint-ui": "^2.2.13",
-    "muse-ui": "^2.1.0",
     "node-sass": "^4.7.2",
     "opn": "^5.2.0",
     "p-try": "^1.0.0",
