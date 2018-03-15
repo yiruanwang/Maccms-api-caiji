@@ -70,7 +70,8 @@ export const appRouter = [
                 icon: 'ios-paper-outline',
                 name: 'admin',
                 title: '管理采集',
-                component: resolve => { require(['@/views/maccms/admin/admin.vue'], resolve); }
+                component: resolve => { require(['@/views/maccms/admin/admin.vue'], resolve); },
+
             },
             {
                 path: 'page1',
