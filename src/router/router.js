@@ -9,7 +9,6 @@ export const loginRouter = {
     },
     component: resolve => { require(['@/views/login.vue'], resolve); }
 };
-
 export const page404 = {
     path: '/*',
     name: 'error-404',
@@ -68,6 +67,13 @@ export const appRouter = [
                 icon: 'ios-list-outline',
                 name: 'page2',
                 title: 'Page2',
+                component: resolve => { require(['@/views/group/page2/page2.vue'], resolve); }
+            },
+            {
+                path: 'page3',
+                icon: 'ios-list-outline',
+                name: 'page3',
+                title: 'Page3',
                 component: resolve => { require(['@/views/group/page2/page2.vue'], resolve); }
             }
         ]
