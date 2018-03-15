@@ -165,10 +165,11 @@ export default {
       console.log(sid);
     },
     Adcloud() {
+      this.$router.push({ name: "cloud_index" });
       console.log("Adcloud");
     },
-    Adadd() {      
-     this.$router.push({ name: "add_index" });
+    Adadd() {
+      this.$router.push({ name: "add_index" });
       console.log("add");
     }
   }

@@ -39,12 +39,12 @@ export const page500 = {
 // 作为Main组件的子页面展示但是不在左侧菜单显示的路由写在otherRouter里
 export const otherRouter = {
     path: '/',
-    name: 'otherRouter',   
+    name: 'otherRouter',
     component: Main,
     children: [
         { path: 'home', title: { i18n: 'home' }, name: 'home_index', component: resolve => { require(['@/views/home/home.vue'], resolve); } },
-        { path: '/maccms/admin/add', title: { i18n: 'add' }, name: 'add_index', component: resolve => { require(['@/views/maccms/admin/add.vue'], resolve); } },
-        { path: '/maccms/admin/cloud', title: { i18n: 'cloud' }, name: 'cloud_index', component: resolve => { require(['@/views/maccms/admin/cloud.vue'], resolve); } },
+        { path: '/maccms/admin/add', title: '添加采集资源', name: 'add_index', component: resolve => { require(['@/views/maccms/admin/add.vue'], resolve); } },
+        { path: '/maccms/admin/cloud', title: '获取云端资源库', name: 'cloud_index', component: resolve => { require(['@/views/maccms/admin/cloud.vue'], resolve); } },
 
     ]
 };
