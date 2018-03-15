@@ -1,0 +1,31 @@
+.yz-col24 {
+    text-align: center;
+    height: 50px;
+  }
+  .yz-left {
+    font-size: 16px; 
+    background: black;
+    .ivu-table-cell{
+        text-align: center;
+    }
+    .ivu-spin-fix{
+        background-color: rgba(73, 80, 96, 0.5);
+    }
+    .demo-spin-icon-load{        
+        animation: ani-demo-spin 1s linear infinite;
+    }
+    @keyframes ani-demo-spin {
+        from { transform: rotate(0deg);}
+        50%  { transform: rotate(180deg);}
+        to   { transform: rotate(360deg);}
+    }
+  }
+  .vertical-center-modal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .ivu-modal{
+        top: 0;
+    }
+}
+ 

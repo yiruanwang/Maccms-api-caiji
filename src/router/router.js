@@ -39,55 +39,63 @@ export const page500 = {
 // 作为Main组件的子页面展示但是不在左侧菜单显示的路由写在otherRouter里
 export const otherRouter = {
     path: '/',
-    name: 'otherRouter',
+    name: 'otherRouter',   
     component: Main,
     children: [
-        { path: 'home', title: {i18n: 'home'}, name: 'home_index', component: resolve => { require(['@/views/home/home.vue'], resolve); } }
+        { path: 'home', title: { i18n: 'home' }, name: 'home_index', component: resolve => { require(['@/views/home/home.vue'], resolve); } },
+        { path: '/maccms/admin/add', title: { i18n: 'add' }, name: 'add_index', component: resolve => { require(['@/views/maccms/admin/add.vue'], resolve); } },
+        { path: '/maccms/admin/cloud', title: { i18n: 'cloud' }, name: 'cloud_index', component: resolve => { require(['@/views/maccms/admin/cloud.vue'], resolve); } },
+
     ]
 };
 
 // 作为Main组件的子页面展示并且在左侧菜单显示的路由写在appRouter里
 export const appRouter = [
     {
-        path: '/group',
+        path: '/maccms',
         icon: 'ios-folder',
-        name: 'group',
-        title: 'Group',
+        name: 'maccms',
+        title: '苹果插件',
         component: Main,
         children: [
+            {
+                path: 'explain',
+                icon: 'ios-paper-outline',
+                name: 'explain',
+                title: '采集说明',
+                component: resolve => { require(['@/views/maccms/explain/explain.vue'], resolve); }
+            },
+            {
+                path: 'admin',
+                icon: 'ios-paper-outline',
+                name: 'admin',
+                title: '管理采集',
+                component: resolve => { require(['@/views/maccms/admin/admin.vue'], resolve); }
+            },
             {
                 path: 'page1',
                 icon: 'ios-paper-outline',
                 name: 'page1',
                 title: 'Page1',
-                component: resolve => { require(['@/views/group/page1/page1.vue'], resolve); }
+                component: resolve => { require(['@/views/maccms/page1/page1.vue'], resolve); }
             },
             {
                 path: 'page2',
                 icon: 'ios-list-outline',
                 name: 'page2',
                 title: 'Page2',
-                component: resolve => { require(['@/views/group/page2/page2.vue'], resolve); }
+                component: resolve => { require(['@/views/maccms/page2/page2.vue'], resolve); }
             },
             {
                 path: 'page3',
                 icon: 'ios-list-outline',
                 name: 'page3',
                 title: 'Page3',
-                component: resolve => { require(['@/views/group/page2/page2.vue'], resolve); }
+                component: resolve => { require(['@/views/maccms/page2/page2.vue'], resolve); }
             }
         ]
-    },
-    {
-        path: '/page',
-        icon: 'ios-paper',
-        title: 'Page',
-        name: 'page',
-        component: Main,
-        children: [
-            { path: 'index', title: 'Page', name: 'page_index', component: resolve => { require(['@/views/page/page.vue'], resolve); } }
-        ]
     }
+
 ];
 
 // 所有上面定义的路由都要写在下面的routers里

@@ -1,4 +1,4 @@
-import axios from 'axios';
+
 import env from '../../build/env';
 import semver from 'semver';
 import packjson from '../../package.json';
@@ -6,21 +6,25 @@ import packjson from '../../package.json';
 let util = {
 
 };
+// util.title = function (title) {
+//     title = title || '易软雅致';
+//     window.document.title = title;
+// };
 util.title = function (title) {
-    title = title || 'iView admin';
+    title = title ? title + ' - 易软雅致' : '易软雅致';
     window.document.title = title;
 };
 
-const ajaxUrl = env === 'development'
-    ? 'http://127.0.0.1:8888'
-    : env === 'production'
-    ? 'https://www.url.com'
-    : 'https://debug.url.com';
+// const ajaxUrl = env === 'development'
+//     ? 'http://127.0.0.1:8888'
+//     : env === 'production'
+//         ? 'https://www.url.com'
+//         : 'https://debug.url.com';
 
-util.ajax = axios.create({
-    baseURL: ajaxUrl,
-    timeout: 30000
-});
+// util.ajax = axios.create({
+//     baseURL: ajaxUrl,
+//     timeout: 30000
+// });
 
 util.inOf = function (arr, targetArr) {
     let res = true;
