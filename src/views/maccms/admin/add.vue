@@ -23,7 +23,7 @@
                         <Input v-model="add.time" clearable placeholder="定义采集时间"></Input>
                     </FormItem>
                     <FormItem label="采集资源备注" prop="content">
-                        <Input v-model="add.content" clearable placeholder="资源备注、说明等信息"></Input>
+                        <Input type="textarea" :rows="4" v-model="add.content" clearable placeholder="资源备注、说明等信息"></Input>
                     </FormItem>
                     <FormItem>
                         <Button type="primary" :loading="loadingadd" icon="android-add-circle" @click="handleSubmit('add')">
@@ -140,13 +140,13 @@ export default {
                 }
               })
               .catch(function(error) {
-                _this.$Message.error("操作失败");
+                _this.$Message.error("网络链接失败");
                 _this.loadingadd = false;
                 console.log(error);
               });
           }, 2000);
         } else {
-          this.$Message.error("操作失败");
+          _this.$Message.error("操作失败");
           _this.loadingadd = false;
         }
       });
