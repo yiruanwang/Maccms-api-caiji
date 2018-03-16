@@ -5,6 +5,6 @@ node_modules
 .history
 .DS_Store
 \.settings/
+src
 src/config/env.js
 dist
-src
