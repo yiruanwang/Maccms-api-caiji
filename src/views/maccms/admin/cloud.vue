@@ -5,30 +5,30 @@
 }
 </style>
 <template>
-    <div class="cloud">
-        <Card span="24">
-            <p slot="title">
-                <i class="ivu-icon ivu-icon-ios-cloud-outline">云端采集资源数据库</i>
-            </p>
+  <div class="cloud">
+    <Card span="24">
+      <p slot="title">
+        <i class="ivu-icon ivu-icon-ios-cloud-outline">云端采集资源数据库</i>
+      </p>
 
-            <a href="#" slot="extra" @click.prevent="addcloud">
-                <Icon type="ios-cloud-upload"></Icon>
-            </a>
+      <a href="#" slot="extra" @click.prevent="addcloud">
+        <Icon type="ios-cloud-upload"></Icon>
+      </a>
 
-            <div>
-                <Row>
-                    <Col span="24" class="yz-left demo-spin-col">
-                    <Spin fix class="ivu-spin-fix" size="large" v-if="spinShow">
-                        <Icon type="load-c" size=18 class="demo-spin-icon-load"></Icon>
-                        <div>数据加载中...</div>
-                    </Spin>
-                    <Table height="500" border :columns="cloudtable" no-data-text=" " :data="Serverdata">
-                    </Table>
-                    </Col>
-                </Row>
-            </div>
-        </Card>
-    </div>
+      <div>
+        <Row>
+          <Col span="24" class="yz-left demo-spin-col">
+          <Spin fix class="ivu-spin-fix" size="large" v-if="spinShow">
+            <Icon type="load-c" size=18 class="demo-spin-icon-load"></Icon>
+            <div>数据加载中...</div>
+          </Spin>
+          <Table height="500" border :columns="cloudtable" no-data-text=" " :data="Serverdata">
+          </Table>
+          </Col>
+        </Row>
+      </div>
+    </Card>
+  </div>
 </template>
 
 <script>
@@ -116,9 +116,9 @@ export default {
       ],
       Serverdata: [],
       CloudService: {
-        all: "http://yazhitv.duapp.com/api/maccms/all",
-        add: "http://yazhitv.duapp.com/api/maccms/add",
-        obtain: "http://yazhitv.duapp.com/api/maccms/obtain"
+        all: this.$store.state.config.cloud.all,
+        add: this.$store.state.config.cloud.add,
+        obtain: this.$store.state.config.cloud.obtain
       }
     };
   },
@@ -128,8 +128,13 @@ export default {
   methods: {
     addcloud() {
       console.log("添加云资源");
+      this.$router.push({
+        name: "cloudadd_index"
+      });
     },
     all() {
+      console.log(this.$store.state.config.cloud.all);
+
       var _this = this;
       _this.spinShow = true;
       var params = new URLSearchParams();
@@ -140,7 +145,7 @@ export default {
             withCredentials: false
           })
           .then(function(res) {
-            console.log("res:" + JSON.stringify(res.data));
+            // console.log("res:" + JSON.stringify(res.data));
             if (res.data.state === "Success") {
               _this.Serverdata = res.data.data;
               _this.spinShow = false;

@@ -1,4 +1,4 @@
-import {otherRouter, appRouter} from '@/router/router';
+import { otherRouter, appRouter } from '@/router/router';
 
 const app = {
     state: {
@@ -9,7 +9,8 @@ const app = {
         ]
     },
     mutations: {
-        updateMenulist (state) {
+        updateMenulist(state) {
+            console.log("app.js");
             state.menuList = appRouter;
         }
     }

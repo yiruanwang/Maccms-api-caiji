@@ -105,7 +105,7 @@ export default {
           }
         ]
       },
-      serverUrl: "http://mac.home.yazhi.tv/admin/yazhicaiji/db.php",
+      serverUrl: this.$store.state.config.local.url,
       loadingadd: false
     };
   },

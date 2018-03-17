@@ -45,6 +45,7 @@ export const otherRouter = {
         { path: 'home', title: { i18n: 'home' }, name: 'home_index', component: resolve => { require(['@/views/home/home.vue'], resolve); } },
         { path: '/maccms/admin/add', title: '添加采集资源', name: 'add_index', component: resolve => { require(['@/views/maccms/admin/add.vue'], resolve); } },
         { path: '/maccms/admin/cloud', title: '获取云端资源库', name: 'cloud_index', component: resolve => { require(['@/views/maccms/admin/cloud.vue'], resolve); } },
+        { path: '/maccms/admin/cloudadd', title: '添加云端资源库', name: 'cloudadd_index', component: resolve => { require(['@/views/maccms/admin/cloud-add.vue'], resolve); } },
 
     ]
 };
