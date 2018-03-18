@@ -10,11 +10,9 @@
       <p slot="title">
         <i class="ivu-icon ivu-icon-ios-cloud-outline">云端采集资源数据库</i>
       </p>
-
       <a href="#" slot="extra" @click.prevent="addcloud">
         <Icon type="ios-cloud-upload"></Icon>
       </a>
-
       <div>
         <Row>
           <Col span="24" class="yz-left demo-spin-col">
@@ -84,12 +82,12 @@ export default {
                 {
                   props: {
                     confirm: true,
-                    title: "您确定要删除这条数据吗?",
+                    title: "您确定要获取这条云数据到本地吗?",
                     transfer: true
                   },
                   on: {
                     "on-ok": () => {
-                      //  this.Adremove(params.index);
+                      this.obtain(params.index);
                     }
                   }
                 },
@@ -117,7 +115,6 @@ export default {
       Serverdata: [],
       CloudService: {
         all: this.$store.state.config.cloud.all,
-        add: this.$store.state.config.cloud.add,
         obtain: this.$store.state.config.cloud.obtain
       }
     };
@@ -126,6 +123,36 @@ export default {
     this.all();
   },
   methods: {
+    obtain(index) {
+      var cloudid = this.Serverdata[index].id;
+      console.log("cloudid:" + cloudid);
+      var _this = this;
+      _this.spinShow = true;
+      var params = new URLSearchParams();
+      params.append("token", this.$store.state.config.cloud.token);
+      params.append("id", cloudid);
+      setTimeout(function() {
+        _this.$axios
+          .post(_this.CloudService.obtain, params, {
+            withCredentials: false
+          })
+          .then(function(res) {
+            console.log("res:" + JSON.stringify(res.data));
+            if (res.data.state === "Success") {
+              console.log("获取成功");
+
+              // _this.Serverdata = res.data.data;
+              _this.spinShow = false;
+            } else {
+              _this.$Message.error("数据获取失败");
+            }
+          })
+          .catch(function(error) {
+            _this.$Message.error("网络链接失败");
+            console.log(error);
+          });
+      }, 1000);
+    },
     addcloud() {
       console.log("添加云资源");
       this.$router.push({
@@ -133,12 +160,11 @@ export default {
       });
     },
     all() {
-      console.log(this.$store.state.config.cloud.all);
-
+      // console.log(this.$store.state.config.cloud.all);
       var _this = this;
       _this.spinShow = true;
       var params = new URLSearchParams();
-      params.append("token", "yazhi.tv");
+      params.append("token", _this.$store.state.config.cloud.token);
       setTimeout(function() {
         _this.$axios
           .post(_this.CloudService.all, params, {

@@ -10,7 +10,7 @@ const app = {
     },
     mutations: {
         updateMenulist(state) {
-            console.log("app.js");
+            console.log("yazhi.tv");
             state.menuList = appRouter;
         }
     }
