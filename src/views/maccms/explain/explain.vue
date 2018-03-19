@@ -11,10 +11,14 @@
             <Col span="24" class="yz-left">
 
             <Alert show-icon>
+                
                 <template slot="desc">
                     <img src="https://img.shields.io/github/package-json/v/yiruanwang/Maccms-api-caiji.svg" alt="" srcset="">
                     <img src="https://img.shields.io/github/languages/code-size/yiruanwang/Maccms-api-caiji.svg" alt="" srcset="">
                     <br>
+                   本地资源库： 首先说下为什么要用到本地数据库，原因很简单，不说也知道了，<br>
+                    云端资源库： 为了共享资源而已。当然希望大家多多提交接口，共同将免费影视进行到底！
+                     <br>
                     33uu采集,?s=collect/api&ac=list&xt=1&ct=&rday=&cjflag=33uudycom&cjurl=http://www.33uudy.com/inc/api.php <br>
                     测试33uu采集?s=collect/api&ac=cjday&xt=1&ct=&rday=98&cjflag=33uudycom&cjurl=http://www.33uudy.com/inc/api.php <br>
                     本来想写个说明的。我想大家看下就会懂了不需要写了吧！
