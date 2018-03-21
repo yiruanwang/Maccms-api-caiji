@@ -281,15 +281,15 @@ export default {
       var _this = this;
       _this.spinShow = true;
       var params = new URLSearchParams();
-      params.append("type", "select");
+     params.append("token", _this.$store.state.config.token);
       setTimeout(function() {
         _this.$axios
-          .post(_this.serverUrl, params, {
+          .post(_this.$store.state.config.local.all, params, {
             withCredentials: false
           })
           .then(function(res) {
-            // console.log("res:" + JSON.stringify(res.data));
-            _this.Admindata = res.data;
+            // console.log("res:" + JSON.stringify(res));
+            _this.Admindata = res.data.data;
             _this.spinShow = false;
           })
           .catch(function(error) {
@@ -313,7 +313,7 @@ export default {
         _this.loadingupdate = true;
         if (valid) {
           var params = new URLSearchParams();
-          params.append("type", "update");
+          params.append("token", _this.$store.state.config.token);
           params.append("id", _this.showmodel.id);
           params.append("name", _this.showmodel.name);
           params.append("url", _this.showmodel.url);
@@ -322,12 +322,12 @@ export default {
           params.append("content", _this.showmodel.content);
           setTimeout(function() {
             _this.$axios
-              .post(_this.serverUrl, params, {
+              .post(_this.$store.state.config.local.update, params, {
                 withCredentials: false
               })
               .then(res => {
                 console.log("res:" + JSON.stringify(res.data));
-                if (res.data == "okupdate") {
+                if (res.data.code == "1") {
                   _this.AdselectJson();
                   _this.$Message.success("修改采集资源数据成功！");
                   _this.loadingupdate = false;
@@ -387,16 +387,16 @@ export default {
       console.log(sid);
       console.log("删除数据");
       var params = new URLSearchParams();
-      params.append("type", "del");
+      params.append("token", _this.$store.state.config.token);
       params.append("id", sid);
       setTimeout(function() {
         _this.$axios
-          .post(_this.serverUrl, params, {
+          .post(_this.$store.state.config.local.del, params, {
             withCredentials: false
           })
           .then(res => {
-            console.log("res:" + JSON.stringify(res));
-            if (res.data == "okdel") {
+            // console.log("res:" + JSON.stringify(res));
+            if (res.data.code == "1") {
               _this.Admindata.splice(index, 1);
               _this.$Message.success("删除成功！");
               _this.spinShow = false;
@@ -417,7 +417,7 @@ export default {
       _this.spinShow = true;
       var sid = _this.Admindata[index].id;
       var params = new URLSearchParams();
-      params.append("token", "yazhi.tv");
+      params.append("token", _this.$store.state.config.token);
       params.append("type", "push");
       params.append("name", _this.Admindata[index].name);
       params.append("email", _this.Admindata[index].email);

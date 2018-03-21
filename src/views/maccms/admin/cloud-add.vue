@@ -116,7 +116,7 @@
           _this.loadingadd = true;
           if (valid) {
             var params = new URLSearchParams();
-            params.append("token", "yazhi.tv");
+            params.append("token", _this.$store.state.config.token);
             params.append("type", "add");
             params.append("name", _this.add.name);
             params.append("email", _this.add.email);

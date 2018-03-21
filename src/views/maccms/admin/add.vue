@@ -117,7 +117,7 @@ export default {
           _this.loadingadd = true;
         if (valid) {          
           var params = new URLSearchParams();
-          params.append("type", "add");
+          params.append("token", _this.$store.state.config.token);
           params.append("name", _this.add.name);
           params.append("url", _this.add.url);
           params.append("urlsetup", _this.add.urlsetup);
@@ -125,17 +125,17 @@ export default {
           params.append("content", _this.add.content);
           setTimeout(function() {
             _this.$axios
-              .post(_this.serverUrl, params, {
+              .post(_this.$store.state.config.local.add, params, {
                 withCredentials: false
               })
               .then(res => {
-                // console.log("res:" + JSON.stringify(res.data));
-                if (res.data == "okadd") {
-                  _this.$Message.success("采集资源数据成功！");
+                console.log("res:" + JSON.stringify(res.data));
+                if (res.data.code == "1") {
+                  _this.$Message.success(res.data.msg);
                   _this.loadingadd = false;
                   _this.$refs[name].resetFields();
                 } else {
-                  _this.$Message.error("采集资源数据失败！");
+                  _this.$Message.error(res.data.msg);
                   _this.loadingadd = false;
                 }
               })
