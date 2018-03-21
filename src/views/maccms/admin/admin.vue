@@ -73,6 +73,10 @@
 export default {
   name: "admin",
   data() {
+    this.$Message.config({
+      top: 300,
+      duration: 2
+    });
     const validatename = (rule, value, callback) => {
       if (value === "") {
         callback(new Error("不能为空"));
@@ -161,7 +165,6 @@ export default {
                 },
                 "修改"
               ),
-
               h(
                 "Poptip",
                 {
@@ -192,22 +195,35 @@ export default {
                     "删除"
                   )
                 ]
-              ),
+              ),             
               h(
-                "Button",
-                {
-                  props: {
-                    type: "info",
-                    size: "small"
-                  },
-                  on: {
-                    click: () => {
-                      this.Adtuichong(params.index);
+                  "Poptip", {
+                    props: {
+                      confirm: true,
+                      title: "您确定要推送这条本地数据到云数据吗?",
+                      transfer: true
+                    },
+                    on: {
+                      "on-ok": () => {
+                         this.Adtuichong(params.index);
+                      }
                     }
-                  }
-                },
-                "推崇到云"
-              )
+                  }, [
+                    h(
+                      "Button", {
+                        style: {
+                          // marginRight: "5px"
+                        },
+                        props: {
+                          type: "warning",
+                          size: "small",
+                          placement: "top"
+                        }
+                      },
+                      "推崇到云"
+                    )
+                  ]
+                )
             ]);
           }
         }
@@ -364,14 +380,78 @@ export default {
       this.showmodel.content = this.Admindata[index].content;
     },
     Adremove(index) {
-      var sid = this.Admindata[index].id;
-      this.Admindata.splice(index, 1);
+      var _this = this;
+      _this.spinShow = true;
+      var sid = _this.Admindata[index].id;
+
       console.log(sid);
       console.log("删除数据");
+      var params = new URLSearchParams();
+      params.append("type", "del");
+      params.append("id", sid);
+      setTimeout(function() {
+        _this.$axios
+          .post(_this.serverUrl, params, {
+            withCredentials: false
+          })
+          .then(res => {
+            console.log("res:" + JSON.stringify(res));
+            if (res.data == "okdel") {
+              _this.Admindata.splice(index, 1);
+              _this.$Message.success("删除成功！");
+              _this.spinShow = false;
+            } else {
+              _this.$Message.error("删除失败！");
+              _this.spinShow = false;
+            }
+          })
+          .catch(function(error) {
+            _this.$Message.error("网络链接失败");
+            _this.spinShow = false;
+            console.log(error);
+          });
+      }, 2000);
     },
     Adtuichong(index) {
-      var sid = this.Admindata[index].id;
-      // this.Admindata.splice(index, 1);
+      var _this = this;
+      _this.spinShow = true;
+      var sid = _this.Admindata[index].id;
+      var params = new URLSearchParams();
+      params.append("token", "yazhi.tv");
+      params.append("type", "push");
+      params.append("name", _this.Admindata[index].name);
+      params.append("email", _this.Admindata[index].email);
+      params.append("page", _this.Admindata[index].page);
+      params.append("url", _this.Admindata[index].url);
+      params.append("urlsetup", _this.Admindata[index].urlsetup);
+      params.append("time", _this.Admindata[index].time);
+      params.append("content", _this.Admindata[index].content);
+      setTimeout(function() {
+        _this.$axios
+          .post(_this.$store.state.config.cloud.push, params, {
+            withCredentials: false
+          })
+          .then(res => {
+            console.log("res:" + JSON.stringify(res.data));
+            if (res.data.result === 1) {
+              _this.$Message.success("推送到云数据库成功！");
+              _this.spinShow = false;            
+            } else if (res.data.result === 0) {
+              _this.$Message.error("数据重复。操作失败！");
+              _this.spinShow = false;
+            } else {
+              console.log(params);
+              _this.$Message.error("推送失败！");
+              _this.spinShow = false;
+            }
+          })
+          .catch(function(error) {
+            _this.$Message.error("网络链接失败");
+            _this.spinShow = false;
+            console.log(error);
+          });
+      }, 2000);
+      console.log("推崇数据");
       console.log(sid);
     },
     Adcloud() {
