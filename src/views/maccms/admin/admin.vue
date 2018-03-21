@@ -354,30 +354,30 @@ export default {
     adshow(index) {
       var _this = this;
       console.log("浏览模式");
-      this.modalshowview = true;
+      _this.modalshowview = true;
       _this.isDisabled = true;
       _this.modelif = true;
       _this.switch1 = true;
-      this.showmodel.id = this.Admindata[index].id;
-      this.showmodel.name = this.Admindata[index].name;
-      this.showmodel.url = this.Admindata[index].url;
-      this.showmodel.urlsetup = this.Admindata[index].urlsetup;
-      this.showmodel.time = this.Admindata[index].time;
-      this.showmodel.content = this.Admindata[index].content;
+      _this.showmodel.id = _this.Admindata[index].id;
+      _this.showmodel.name = _this.Admindata[index].name;
+      _this.showmodel.url = _this.Admindata[index].url;
+      _this.showmodel.urlsetup = _this.Admindata[index].urlsetup;
+      _this.showmodel.time = _this.Admindata[index].time;
+      _this.showmodel.content = _this.Admindata[index].content;
     },
     Adupdate(index) {
       var _this = this;
       console.log("修改模式");
-      this.modalshowview = true;
+      _this.modalshowview = true;
       _this.isDisabled = false;
       _this.modelif = false;
       _this.switch1 = false;
-      this.showmodel.id = this.Admindata[index].id;
-      this.showmodel.name = this.Admindata[index].name;
-      this.showmodel.url = this.Admindata[index].url;
-      this.showmodel.urlsetup = this.Admindata[index].urlsetup;
-      this.showmodel.time = this.Admindata[index].time;
-      this.showmodel.content = this.Admindata[index].content;
+      _this.showmodel.id = _this.Admindata[index].id;
+      _this.showmodel.name = _this.Admindata[index].name;
+      _this.showmodel.url = _this.Admindata[index].url;
+      _this.showmodel.urlsetup = _this.Admindata[index].urlsetup;
+      _this.showmodel.time = _this.Admindata[index].time;
+      _this.showmodel.content = _this.Admindata[index].content;
     },
     Adremove(index) {
       var _this = this;
